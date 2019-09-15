@@ -31,7 +31,10 @@ public class SingletonObject : MonoBehaviour
         {
             s_singletons.Add(m_identity, gameObject);
             m_containedInDictionary = true;
-            DontDestroyOnLoad(gameObject);
+            if(m_dontDestroyOnLoad)
+            {
+                DontDestroyOnLoad(gameObject);
+            }
         }
     }
 
@@ -45,7 +48,7 @@ public class SingletonObject : MonoBehaviour
     }
 
     //Access a singleton object
-    public GameObject GetSingleton(string key)
+    public static GameObject GetSingleton(string key)
     {
         return s_singletons[key];
     }
